@@ -1,0 +1,15 @@
+# Verilator generated files
+obj_dir/
+
+# Waveform
+*.vcd
+
+# Simulation logs
+*.log
+
+# Generated reports
+results/
+
+# Editor/system files
+*.swp
+*~
