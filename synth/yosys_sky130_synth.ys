@@ -1,0 +1,10 @@
+read_verilog rtl/UART_8N1_RX.v
+
+hierarchy -check -top UART_8N1_RX
+
+proc
+opt
+
+synth -top UART_8N1_RX
+
+stat

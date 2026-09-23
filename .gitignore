@@ -13,3 +13,9 @@ results/
 # Editor/system files
 *.swp
 *~
+# External tools cloned locally
+rtl-buddy-cdc/
+
+# Generated Yosys schematic files
+synth/*.dot
+synth/*.svg

@@ -1,0 +1,33 @@
+# ============================================================
+# UART RX - SKY130HD Technology-Mapped Synthesis
+# ============================================================
+
+# SKY130HD Liberty library
+read_liberty -lib ../OpenROAD-flow-scripts/flow/platforms/sky130hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+# Read RTL
+read_verilog rtl/UART_8N1_RX.v
+
+# Select top module
+hierarchy -check -top UART_8N1_RX
+
+# Generic synthesis
+synth -top UART_8N1_RX
+
+# Map flip-flops to SKY130HD sequential cells
+dfflibmap -liberty ../OpenROAD-flow-scripts/flow/platforms/sky130hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+# Map combinational logic to SKY130HD cells
+abc -liberty ../OpenROAD-flow-scripts/flow/platforms/sky130hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+# Remove unused/intermediate objects
+clean
+
+# Verify the mapped design
+check
+
+# Display cell statistics
+stat -liberty ../OpenROAD-flow-scripts/flow/platforms/sky130hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+# Write technology-mapped gate-level netlist
+write_verilog -noattr synth/UART_8N1_RX_sky130.v
