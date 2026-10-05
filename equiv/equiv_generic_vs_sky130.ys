@@ -1,0 +1,76 @@
+# ============================================================
+# UART RX
+# Generic Netlist vs SKY130 Mapped Netlist Equivalence
+# ============================================================
+
+
+# ============================================================
+# GOLD: Generic synthesized netlist
+# ============================================================
+
+read_verilog synth/UART_8N1_RX_synth.v
+
+hierarchy -check -top UART_8N1_RX
+
+# Convert any Verilog processes into netlist logic
+proc
+opt
+
+# Normalize asynchronous FFs for formal checking
+async2sync
+opt
+
+design -stash gold
+
+
+# ============================================================
+# GATE: SKY130 technology-mapped netlist
+# ============================================================
+
+# Read functional models from SKY130 Liberty
+read_liberty -ignore_miss_func \
+../OpenROAD-flow-scripts/flow/platforms/sky130hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+# Read mapped netlist
+read_verilog synth/UART_8N1_RX_sky130.v
+
+hierarchy -check -top UART_8N1_RX
+
+# Expand SKY130 cells into Yosys-understandable primitives
+flatten
+opt_clean
+
+# Normalize asynchronous FFs
+async2sync
+opt
+
+design -stash gate
+
+
+# ============================================================
+# BUILD EQUIVALENCE MODEL
+# ============================================================
+
+design -copy-from gold -as gold UART_8N1_RX
+design -copy-from gate -as gate UART_8N1_RX
+
+equiv_make gold gate equiv
+
+hierarchy -top equiv
+opt_clean
+
+
+# ============================================================
+# FORMAL PROOF
+# ============================================================
+
+equiv_simple
+
+equiv_induct -seq 20
+
+
+# ============================================================
+# REPORT
+# ============================================================
+
+equiv_status

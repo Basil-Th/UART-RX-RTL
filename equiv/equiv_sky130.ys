@@ -1,0 +1,65 @@
+# ============================================================
+# UART RX - RTL vs SKY130 Post-Synthesis Equivalence
+# ============================================================
+
+# ============================================================
+# GOLD DESIGN - Original RTL
+# ============================================================
+
+read_verilog rtl/UART_8N1_RX.v
+
+hierarchy -check -top UART_8N1_RX
+
+proc
+opt
+
+# Convert async FF behavior into a form supported by SAT
+async2sync
+opt
+
+design -stash gold
+
+
+# ============================================================
+# GATE DESIGN - SKY130 mapped netlist
+# ============================================================
+
+read_liberty -ignore_miss_func \
+../OpenROAD-flow-scripts/flow/platforms/sky130hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+	
+read_verilog synth/UART_8N1_RX_sky130.v
+
+hierarchy -check -top UART_8N1_RX
+flatten
+opt_clean
+
+# Convert sequential structures for formal comparison
+async2sync
+opt
+
+design -stash gate
+
+
+# ============================================================
+# CREATE EQUIVALENCE MODEL
+# ============================================================
+
+design -copy-from gold -as gold UART_8N1_RX
+design -copy-from gate -as gate UART_8N1_RX
+
+equiv_make gold gate equiv
+
+hierarchy -top equiv
+# ============================================================
+# EQUIVALENCE PROOF
+# ============================================================
+
+equiv_simple
+
+equiv_induct -seq 20
+
+# ============================================================
+# REPORT
+# ============================================================
+
+equiv_status

@@ -1,0 +1,47 @@
+# ============================================================
+# UART RX - RTL vs Generic Synthesized Netlist Equivalence
+# ============================================================
+
+# GOLD: Original RTL
+read_verilog rtl/UART_8N1_RX.v
+hierarchy -check -top UART_8N1_RX
+
+proc
+opt
+
+# Normalize asynchronous reset for formal proof
+async2sync
+opt
+
+design -stash gold
+
+
+# GATE: Generic synthesized netlist
+read_verilog synth/UART_8N1_RX_synth.v
+hierarchy -check -top UART_8N1_RX
+proc
+opt
+# Normalize asynchronous reset
+async2sync
+opt
+
+design -stash gate
+
+
+# Create comparison designs
+design -copy-from gold -as gold UART_8N1_RX
+design -copy-from gate -as gate UART_8N1_RX
+
+equiv_make gold gate equiv
+
+hierarchy -top equiv
+opt_clean
+
+
+# Equivalence proof
+equiv_simple
+equiv_induct -seq 20
+
+
+# Report
+equiv_status -assert
