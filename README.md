@@ -1,8 +1,6 @@
 # UART 8N1 Receiver
 
-This repository contains the RTL design and verification of an 8-bit UART receiver implemented in Verilog.
-
-I developed this project to gain practical experience with an ASIC-oriented RTL design flow. Along with the UART receiver RTL, the design was taken through lint checking, simulation, SystemVerilog assertions, CDC analysis, generic synthesis, SKY130HD technology mapping, and formal equivalence checking.
+This repository contains a synthesizable 8N1 UART Receiver implemented in Verilog for a 50 MHz system clock and 9600 baud rate. The project was developed as part of my ASIC-oriented RTL design practice and covers linting, simulation, SystemVerilog assertions, CDC analysis, generic synthesis, SKY130HD technology mapping, and formal equivalence checking.
 
 The current work is completed up to the synthesis stage.
 
