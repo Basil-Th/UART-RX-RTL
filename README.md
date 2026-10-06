@@ -145,12 +145,14 @@ Found 37 $equiv cells in equiv:
 
 Equivalence successfully proven!
 ```
-![UART RX Equivalence](docs/Simulation_results/Equivalence.JPG)
 Therefore, all 37 equivalence points between the RTL and generic synthesized implementation were successfully proven.
 
 Additional experiments were performed to compare the generic synthesized design with the SKY130HD technology-mapped netlist.
 
 The SKY130HD equivalence check was not fully proven, so it is not considered a completed equivalence result in this project. The related scripts have been retained in the `equiv/` directory for further study.
+
+![UART RX Equivalence](docs/Simulation_results/Equivalence.JPG)
+
 
 ## Repository Contents
 
