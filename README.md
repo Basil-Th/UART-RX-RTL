@@ -62,13 +62,13 @@ tb/UART_8N1_RX_sva.sv
 ```
 ## Simulation Results
 
-![UART RX Simulation Waveform](docs/Simulation_results/simulation_wave.JPG)
+![UART RX Simulation Waveform](docs/results/simulation_wave.JPG)
 
 The receiver was tested with multiple UART data patterns and additional test cases covering reset, false-start detection, invalid stop-bit handling, and baud-rate variation.
 
-![UART RX Tests 1-10](docs/Simulation_results/Self_test_1-10.JPG)
+![UART RX Tests 1-10](docs/results/Self_test_1-10.JPG)
 
-![UART RX Tests 11-15](docs/Simulation_results/self_test_11-15.JPG)
+![UART RX Tests 11-15](docs/results/self_test_11-15.JPG)
 ## CDC Analysis
 
 The UART RX input is asynchronous with respect to the 50 MHz system clock.
@@ -128,7 +128,7 @@ These are synthesis-level results based on the SKY130HD standard-cell library an
 
 Schematic views were also generated using Yosys during the synthesis analysis to inspect the RTL, generic synthesized design, and SKY130HD mapped design.
 
-![UART RX Synthesis](docs/Simulation_results/Synthesis.JPG)
+![UART RX Synthesis](docs/results/Synthesis.JPG)
 
 
 ## Formal Equivalence
@@ -151,7 +151,7 @@ Additional experiments were performed to compare the generic synthesized design 
 
 The SKY130HD equivalence check was not fully proven, so it is not considered a completed equivalence result in this project. The related scripts have been retained in the `equiv/` directory for further study.
 
-![UART RX Equivalence](docs/Simulation_results/Equivalence.JPG)
+![UART RX Equivalence](docs/results/Equivalence.JPG)
 
 
 ## Repository Contents
