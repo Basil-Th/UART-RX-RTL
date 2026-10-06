@@ -60,7 +60,15 @@ The assertion file is available at:
 ```text
 tb/UART_8N1_RX_sva.sv
 ```
+## Simulation Results
 
+![UART RX Simulation Waveform](docs/Simulation_results/simulation_wave.JPG)
+
+The receiver was tested with multiple UART data patterns and additional test cases covering reset, false-start detection, invalid stop-bit handling, and baud-rate variation.
+
+![UART RX Tests 1-10](docs/Simulation_results/Self_test_1-10.JPG)
+
+![UART RX Tests 11-15](docs/Simulation_results/self_test_11-15.JPG)
 ## CDC Analysis
 
 The UART RX input is asynchronous with respect to the 50 MHz system clock.
