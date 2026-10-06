@@ -123,11 +123,13 @@ Number of cells: 205
 Chip area: 1983.152
 Sequential element area: 1004.7136 (50.66%)
 ```
-![UART RX Synthesis](docs/Simulation_results/Synthesis.JPG)
 
 These are synthesis-level results based on the SKY130HD standard-cell library and are not final post-layout area results.
 
 Schematic views were also generated using Yosys during the synthesis analysis to inspect the RTL, generic synthesized design, and SKY130HD mapped design.
+
+![UART RX Synthesis](docs/Simulation_results/Synthesis.JPG)
+
 
 ## Formal Equivalence
 
