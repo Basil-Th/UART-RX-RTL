@@ -123,6 +123,7 @@ Number of cells: 205
 Chip area: 1983.152
 Sequential element area: 1004.7136 (50.66%)
 ```
+![UART RX Synthesis](docs/Simulation_results/Synthesis.JPG)
 
 These are synthesis-level results based on the SKY130HD standard-cell library and are not final post-layout area results.
 
@@ -142,7 +143,7 @@ Found 37 $equiv cells in equiv:
 
 Equivalence successfully proven!
 ```
-
+![UART RX Equivalence](docs/Simulation_results/Equivalence.JPG)
 Therefore, all 37 equivalence points between the RTL and generic synthesized implementation were successfully proven.
 
 Additional experiments were performed to compare the generic synthesized design with the SKY130HD technology-mapped netlist.
