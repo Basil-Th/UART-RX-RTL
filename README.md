@@ -253,3 +253,59 @@ The next stages I plan to explore using this design are:
 
 B.Tech in Electronics and Communication Engineering  
 RTL Design | Digital Design | VLSI
+
+---
+
+## Part 2 — ASIC Physical Design (RTL to GDSII)
+
+The UART Receiver project has been extended from synthesized
+RTL into a standard-cell physical implementation using
+OpenROAD and the SKY130HD 130 nm technology.
+
+### Physical Design Flow
+
+- Floorplanning and I/O pin placement
+- Tapcell and power distribution network generation
+- Global and detailed placement
+- Clock Tree Synthesis (CTS)
+- Post-CTS timing repair
+- Global and detailed routing
+- Filler cell placement
+- DEF and GDSII generation
+- Design Rule Checking (DRC)
+- Layout Versus Schematic (LVS)
+- Post-route Static Timing Analysis (STA)
+
+### Verification Results
+
+| Parameter | Result |
+|---|---|
+| Technology | SKY130HD (130 nm) |
+| Target Frequency | 50 MHz |
+| Clock Period | 20 ns |
+| DRC | 0 reported violations |
+| LVS | Passed — Netlists Match |
+| Worst Setup Slack (TT) | +14.40 ns |
+| Worst Hold Slack (TT) | +0.35 ns |
+| Synchronizer Setup Slack (TT) | +19.44 ns |
+| Synchronizer Hold Slack (TT) | +0.35 ns |
+
+Timing analysis was performed using the TT, 25°C, 1.8 V
+Liberty corner with extracted routing parasitics.
+
+### Physical Design Deliverables
+
+- [Physical Design Documentation](docs/PHYSICAL_DESIGN.md)
+- [Final GDSII Layout](gds/reexport/uart_rx_reexport.gds)
+- [Final DEF](gds/uart_rx_final.def)
+- [DRC Report](reports/uart_rx_reexport_drc.lyrdb)
+- [LVS Report](lvs/uart_rx_pg_lvs.lvsdb)
+- [Post-route STA Log](sta/uart_rx_post_route_check.log)
+
+### Scope
+
+This project demonstrates an educational RTL-to-GDSII
+ASIC implementation workflow.
+
+The verification results do not represent complete
+foundry-qualified fabrication signoff.

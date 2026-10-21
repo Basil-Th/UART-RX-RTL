@@ -1,0 +1,79 @@
+[INFO] USER_ID: 1000, GROUP_ID: 1000
+[INFO] Final PATH variable: /foss/tools/bin:/foss/tools/sak:/usr/local/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/foss/tools/kactus2:/foss/tools/klayout:/foss/tools/osic-multitool
+[INFO] Final PYTHONPATH variable: /usr/lib/python312.zip:/usr/lib/python3.12:/usr/lib/python3.12/lib-dynload:/usr/local/lib/python3.12/dist-packages:/usr/lib/python3/dist-packages:/foss/tools/ngspyce/local/lib/python3.12/dist-packages:/foss/tools/openems/local/lib/python3.12/dist-packages:/foss/tools/pyopus/local/lib/python3.12/dist-packages:/foss/tools/yosys/share/yosys/python3:/foss/tools/klayout/pymod:/foss/tools/vacask/lib/vacask/python
+[INFO] SKIPPING UI STARTUP
+[INFO] Executing command: 'openroad -exit /work/UART_RX/sta/check_synchronizer.tcl'
+OpenROAD 26Q2-1164-g08f67ee5e 
+Features included (+) or not (-): +GPU +GUI +Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO RCX-0435] Reading extraction model file /work/ORFS/flow/platforms/sky130hd/rcx_patterns.rules ...
+[INFO RCX-0434] Defined process_corner MinMax0 with ext_model_index 0 (using extRulesFile defaults)
+[INFO RCX-0436] RC segment generation UART_8N1_RX (max_merge_res 50.0) ...
+[INFO RCX-0040] Final 854 rc segments
+[INFO RCX-0439] Coupling Cap extraction UART_8N1_RX ...
+[INFO RCX-0440] Coupling threshhold is 0.1000 fF, coupling capacitance less than 0.1000 fF will be grounded.
+[INFO RCX-0442] 54% of 1485 wires extracted
+[INFO RCX-0442] 100% of 1485 wires extracted
+[INFO RCX-0045] Extract 214 nets, 1068 rsegs, 1068 caps, 1373 ccs
+
+========== SYNCHRONIZER REGISTER CHECK ==========
+First-stage flip-flop: _346_
+
+========== SETUP FROM FIRST STAGE ==========
+Startpoint: _346_ (rising edge-triggered flip-flop clocked by clk)
+Endpoint: _347_ (rising edge-triggered flip-flop clocked by clk)
+Path Group: clk
+Path Type: max
+
+  Delay    Time   Description
+---------------------------------------------------------
+   0.00    0.00   clock clk (rise edge)
+   0.25    0.25   clock network delay (propagated)
+   0.00    0.25 ^ _346_/CLK (sky130_fd_sc_hd__dfstp_2)
+   0.51    0.76 ^ _346_/Q (sky130_fd_sc_hd__dfstp_2)
+   0.00    0.76 ^ _347_/D (sky130_fd_sc_hd__dfstp_2)
+           0.76   data arrival time
+
+  20.00   20.00   clock clk (rise edge)
+   0.25   20.25   clock network delay (propagated)
+   0.00   20.25   clock reconvergence pessimism
+          20.25 ^ _347_/CLK (sky130_fd_sc_hd__dfstp_2)
+  -0.05   20.20   library setup time
+          20.20   data required time
+---------------------------------------------------------
+          20.20   data required time
+          -0.76   data arrival time
+---------------------------------------------------------
+          19.44   slack (MET)
+
+
+
+========== HOLD FROM FIRST STAGE ==========
+Startpoint: _346_ (rising edge-triggered flip-flop clocked by clk)
+Endpoint: _347_ (rising edge-triggered flip-flop clocked by clk)
+Path Group: clk
+Path Type: min
+
+  Delay    Time   Description
+---------------------------------------------------------
+   0.00    0.00   clock clk (rise edge)
+   0.25    0.25   clock network delay (propagated)
+   0.00    0.25 ^ _346_/CLK (sky130_fd_sc_hd__dfstp_2)
+   0.36    0.61 v _346_/Q (sky130_fd_sc_hd__dfstp_2)
+   0.00    0.61 v _347_/D (sky130_fd_sc_hd__dfstp_2)
+           0.61   data arrival time
+
+   0.00    0.00   clock clk (rise edge)
+   0.25    0.25   clock network delay (propagated)
+   0.00    0.25   clock reconvergence pessimism
+           0.25 ^ _347_/CLK (sky130_fd_sc_hd__dfstp_2)
+   0.00    0.25   library hold time
+           0.25   data required time
+---------------------------------------------------------
+           0.25   data required time
+          -0.61   data arrival time
+---------------------------------------------------------
+           0.35   slack (MET)
+
+
