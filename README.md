@@ -261,6 +261,20 @@ RTL Design | Digital Design | VLSI
 The UART Receiver project has been extended from synthesized
 RTL into a standard-cell physical implementation using
 OpenROAD and the SKY130HD 130 nm technology.
+### Final UART Receiver ASIC Layout
+
+![UART Receiver ASIC Physical Layout](docs/results/final_layout.png)
+
+**UART_8N1_RX — SKY130HD (130 nm)**
+
+Physical implementation completed using OpenROAD, with GDSII visualization in KLayout.
+
+- **DRC:** 0 reported violations
+- **LVS:** Netlists match
+- **Post-route setup slack (TT):** +14.40 ns
+- **Post-route hold slack (TT):** +0.35 ns
+
+[View detailed physical layout and implementation documentation](docs/PHYSICAL_DESIGN.md)
 
 ### Physical Design Flow
 

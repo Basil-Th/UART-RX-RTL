@@ -85,6 +85,27 @@ integrity analysis, and full reset signoff were
 not completed.
 
 This design is not claimed to be fabrication-ready.
+## Physical Design Visualization
+
+### Earlier Physical Design Stage
+
+![UART RX Earlier Physical Design Stage](results/pre_placement.JPG)
+
+*Earlier physical-design view of the UART Receiver ASIC.*
+
+### Final Routed Physical Layout
+
+![UART RX Final Physical Layout](results/final_layout.png)
+
+*Final routed GDSII layout of UART_8N1_RX implemented using SKY130HD and OpenROAD, visualized in KLayout.*
+
+### Detailed Routing and Power Distribution
+
+![UART RX Detailed Physical Layout](results/detailed_layout.png)
+
+*Detailed physical-layout view highlighting the power-distribution structures and routed interconnect layers.*
+
+The final corrected GDSII was checked using the selected SKY130HD DRC and LVS rule decks, resulting in zero reported DRC violations and a successful LVS comparison.
 
 ## Project Deliverables
 
